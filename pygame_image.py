@@ -23,16 +23,19 @@ def main():
             if event.type == pg.QUIT: return
         keys = pg.key.get_pressed()
         
+        move_x, move_y = 0, 0
         if keys[pg.K_UP]:
-                kt_rec.move_ip((0, -1))
+            move_y -= 1
         if keys[pg.K_DOWN]:
-                kt_rec.move_ip((0, 1))
-        if keys[pg.K_LEFT]:
-                kt_rec.move_ip((-1, 0))
+            move_y += 1
         if keys[pg.K_RIGHT]:
-                kt_rec.move_ip((1, 0))
+            move_x += 2
+        if keys[pg.K_LEFT]: 
+            move_x -= 2
         else:
-                kt_rec.move_ip((-1, 0))
+            move_x -= 1  
+        kt_rec.move_ip(move_x, move_y)
+
         bg_x = -(tmr%3200)
         screen.blit(bg_img_r, [bg_x+1600, 0])
         screen.blit(bg_img, [bg_x, 0])
